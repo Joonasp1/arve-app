@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-function receiptfooter() {
-  return (
-    <div className='rfooter'>
+export default class receiptfooter extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            
+        }
+    }
+
+  render() {
+    return (
         
-    </div>
-  )
-}
+      <div className='rfooter'>
 
-export default receiptfooter
+      </div>
+    )
+  }
+}

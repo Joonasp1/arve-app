@@ -12,7 +12,8 @@ export default class receiptfooter extends Component {
     return (
         
       <div className='rfooter'>
-
+        <p>Total: {this.props.total}</p>
+        <button onClick={() => {this.props.setTotal()}}>Test</button>
       </div>
     )
   }

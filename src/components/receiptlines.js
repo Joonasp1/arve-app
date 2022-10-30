@@ -14,14 +14,6 @@ export default class receiptlines extends Component {
         }
     }
 
-    addLine(event) {
-        var newIndex = this.state.lines.length + 1;
-        var newArray = [...this.state.lines]
-        newArray.push({id: newIndex, description: this.state.descriptionField, amount: Number(this.state.amountField), cost: Number(this.state.costField)})
-        this.setState({lines: newArray})
-        console.log(this.state.lines)
-    }
-
     updateDescription(event){
         this.setState({descriptionField: event.target.value})
     }
@@ -44,10 +36,10 @@ export default class receiptlines extends Component {
             <input type="number" onChange={this.updateAmount.bind(this)}></input>
             <label>Cost:</label>
             <input type="number" onChange={this.updateCost.bind(this)}></input>
-            <input type="button" value="Add" onClick={this.addLine.bind(this)}></input>
+            <input type="button" value="Add" onClick={() => {this.props.addLine(this.state.descriptionField, Number(this.state.amountField), Number(this.state.costField))}}></input>
         </form>
         <ul>
-            {this.state.lines.map(l => (<li key={l.id}>{l.description} {l.amount} {l.cost}</li>))}
+            {this.props.lines.map(l => (<li key={l.id}>{l.description} {l.amount} {l.cost} {Math.round(l.cost * l.amount * 100) / 100}</li>))}
         </ul>
       </div>
     )

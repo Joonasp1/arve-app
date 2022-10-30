@@ -3,19 +3,19 @@ import Receiptlines from './Receiptlines'
 import Receiptfooter from './Receiptfooter'
 
 import React, { Component } from 'react'
-import './Receipt.css'
 
 export default class receipt extends Component {
 
   constructor(props){
     super(props)
     this.state = {
-        total: "200",
+        total: "0",
+        date: new Date(),
+        due: new Date(),
         lines: [
-          {id: 1, description: "test1", amount: 1, cost: 24.99, total: 0},
-          {id: 2, description: "test2", amount: 3, cost: 1.40, total: 0}
       ],
     }
+    this.state.due = new Date(this.state.due.setDate(this.state.due.getDate()+7))
 }
 
 setTotal(){
@@ -28,9 +28,17 @@ setTotal(){
 }
 
 addLine(desc, amt, cst) {
+  if(amt.length > 8){
+    alert("Koguse välja maksimum on 8 tähemärki")
+    return
+  }
+  if(cst.length > 8){
+    alert("Hinna välja maksimum on 8 tähemärki")
+    return
+  }
   var newIndex = this.state.lines.length + 1;
   var newArray = [...this.state.lines]
-  newArray.push({id: newIndex, description: desc, amount: amt, cost: cst})
+  newArray.push({id: newIndex, description: desc, amount: Number(amt), cost: Number(cst)})
   this.setState({lines: newArray}, () => {this.setTotal()})
 }
 
@@ -47,14 +55,33 @@ removeLine(id){
   this.setState({lines: newArray}, () => {this.setTotal()})
 }
 
+changeBoth(event) {
+  var newdate = new Date(event.target.value)
+  var newdue = new Date(event.target.value)
+  this.setState({date: newdate})
+  newdue = new Date(newdue.setDate(newdate.getDate() + 7))
+  this.setState({due: newdue})
+
+}
+
+changeDue(event){
+  var newdue = new Date(event.target.value)
+  this.setState({due: newdue})
+}
+
   validateFields(){
-    console.log("VALIDATE")
+    if(this.state.date > this.state.due){
+      alert("Maksetähtaeg on enne alguskuupäeva")
+      return
+    }
+    alert("Salvestamine õnnestus")
+
   }
 
   render() {
     return (
       <div className='receipt'>
-        <Receiptheader></Receiptheader>
+        <Receiptheader date={this.state.date} due={this.state.due} changeBoth={this.changeBoth.bind(this)} changeDue={this.changeDue.bind(this)}></Receiptheader>
         <Receiptlines lines={this.state.lines} addLine={this.addLine.bind(this)} removeLine={this.removeLine.bind(this)}></Receiptlines>
         <Receiptfooter total={this.state.total} setTotal={this.setTotal.bind(this)} validateFields={this.validateFields.bind(this)}></Receiptfooter>
       </div>

@@ -12,7 +12,7 @@ export default class receiptfooter extends Component {
     return (
         
       <div className='rfooter'>
-        <p>Total: {this.props.total}</p>
+        <p>Summa: {this.props.total}</p>
         <button onClick={this.props.validateFields}>Salvesta</button>
       </div>
     )

@@ -3,20 +3,159 @@
     padding: 0;
 }
 
-.main{
-    background-color: rgb(215, 237, 255);
+body{
+    background-color: #85B2E6;
+}
+
+button:active{
+    background-color: #0D1A29;
+}
+
+button:hover{
+    background-color: #4c5a6b;
 }
 
 .rheader{
-    background-color: rgb(4, 23, 49);
+    
+    background-color: #0D1A29;
     font-size: 32px;
-    color: azure;
+    color: #85B2E6;
     padding-left: 20%;
-    padding-right: 20%;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .rheader > input{
     margin-right: 25px;
     margin-left: 10px;
+    margin-top: 5px;
+    user-select: none;
+}
+
+.rheader > input[type=text]{
+    font-size: 24px;
+    background-color: #85B2E6;
+    border: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 300px;
+}
+
+.rheader > input[type=date]{
+    width: 30px;
+    height: 30px;
+    background-color: #85B2E6;
+    background-image: url('calendar.png');
+    background-size: 30px 30px;
+    color: transparent;
+    font-size: 0px;
+}
+
+.rlines{
+    text-align: center;
+    font-size: 28px;
+}
+
+th{
+    border: 2px solid #0D1A29;
+}
+
+td{
+    border: 2px solid #0D1A29;
+}
+
+td > button{
+    height: 50px;
+    width: 100%;
+    border: none;
+    background-color: #0D1A29;
+    color: #85B2E6;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+td > button:active{
+    background-color: #0D1A29;
+}
+
+#desc{
+    width: 600px;
+}
+
+.rlines > form > input{
+    margin-right: 10px;
+    font-size: 18px;
+    background-color: #c9d7e7;
+    border: none;
+    
+}
+
+.rlines > form > button{
+    margin-left: 20px;
+    background-color: #0D1A29;
+    color: #85B2E6;
+    border: none;
+    font-size: 18px;
+    width: 50px;
+}
+
+.rlines > form > button:hover{
+    background-color: #4c5a6b;
+}
+
+.rlines > form > button:active{
+    background-color: #0D1A29;
+}
+
+.rlines > form > input[type=number]{
+    width: 100px;
+}
+
+.rlines > form > input:focus{
+    background-color: white;
+    border: none;
+}
+
+.rlines > form > label{
+    margin-right: 10px;
+}
+
+.rlines > table{
+    padding-top: 20px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rfooter{
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.rfooter > p{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.rfooter > button{
+    height: 50px;
+    width: 150px;
+    border: none;
+    background-color: #0D1A29;
+    color: #85B2E6;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.rfooter > button:hover{
+    background-color: #4c5a6b;
+}
+
+.rfooter > button:active{
+    background-color: #0D1A29;
 }

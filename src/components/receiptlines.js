@@ -27,16 +27,34 @@ export default class receiptlines extends Component {
       <div className='rlines'>
         <form>
             <label>Kirjeldus:</label>
-            <input type="text" onChange={this.updateDescription.bind(this)}></input>
+            <input type="text" maxLength="32" onChange={this.updateDescription.bind(this)}></input>
             <label>Kogus:</label>
             <input type="number" onChange={this.updateAmount.bind(this)}></input>
             <label>Hind:</label>
-            <input type="number" onChange={this.updateCost.bind(this)}></input>
-            <input type="button" value="Lisa" onClick={() => {this.props.addLine(this.state.descriptionField, Number(this.state.amountField), Number(this.state.costField))}}></input>
+            <input type="number" step="0.01" onChange={this.updateCost.bind(this)}></input>
+            <button type='button' onClick={() => {this.props.addLine(this.state.descriptionField, this.state.amountField, this.state.costField)}}>Lisa</button>
         </form>
-        <ul>
-            {this.props.lines.map(l => (<div><li key={l.id}>{l.description} {l.amount} {l.cost} {Math.round(l.cost * l.amount * 100) / 100}</li><button onClick={() => {this.props.removeLine(l.id)}}>Eemalda</button></div>))}
-        </ul>
+        <table>
+            <thead>
+            <tr>
+                <th>Kirjeldus</th>
+                <th>Kogus</th>
+                <th>Hind</th>
+                <th>Summa</th>
+            </tr>
+            </thead>
+            <tbody>
+        {this.props.lines.map(l => (
+            <tr>
+                <td id='desc'>{l.description}</td>
+                <td>{l.amount}</td>
+                <td>{l.cost}</td>
+                <td>{Math.round(l.cost * l.amount * 100) / 100}</td>
+                <td><button onClick={() => {this.props.removeLine(l.id)}}>Eemalda</button></td>
+            </tr>
+            ))}
+            </tbody>
+        </table>
       </div>
     )
   }

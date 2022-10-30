@@ -1,4 +1,5 @@
 import Receipt from "./components/Receipt"; 
+import './components/Receipt.css'
 
 function App() {
   return (

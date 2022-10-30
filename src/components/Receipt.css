@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+    background-color: rgb(215, 237, 255);
+}
+
+.rheader{
+    background-color: rgb(4, 23, 49);
+    font-size: 32px;
+    color: azure;
+    padding-left: 20%;
+    padding-right: 20%;
+    margin-bottom: 50px;
+}
+
+.rheader > input{
+    margin-right: 25px;
+    margin-left: 10px;
+}

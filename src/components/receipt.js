@@ -3,6 +3,7 @@ import Receiptlines from './Receiptlines'
 import Receiptfooter from './Receiptfooter'
 
 import React, { Component } from 'react'
+import './Receipt.css'
 
 export default class receipt extends Component {
 
@@ -24,22 +25,38 @@ setTotal(){
   });
   newTotal = Math.round(newTotal * 100) / 100
   this.setState({total: newTotal.toString()})
-  console.log("CALLED")
 }
 
 addLine(desc, amt, cst) {
   var newIndex = this.state.lines.length + 1;
   var newArray = [...this.state.lines]
   newArray.push({id: newIndex, description: desc, amount: amt, cost: cst})
-  this.setState({lines: newArray})
+  this.setState({lines: newArray}, () => {this.setTotal()})
 }
+
+removeLine(id){
+  console.log(id);
+  var newArray = [...this.state.lines]
+  var toRemove = newArray.findIndex((obj) => obj.id === id)
+  newArray.splice(toRemove,1)
+  var newIndex = 1
+  newArray.forEach(element => {
+    element.id = newIndex
+    newIndex += 1
+  });
+  this.setState({lines: newArray}, () => {this.setTotal()})
+}
+
+  validateFields(){
+    console.log("VALIDATE")
+  }
 
   render() {
     return (
       <div className='receipt'>
         <Receiptheader></Receiptheader>
-        <Receiptlines lines={this.state.lines} addLine={this.addLine.bind(this)}></Receiptlines>
-        <Receiptfooter total={this.state.total} setTotal={this.setTotal.bind(this)}></Receiptfooter>
+        <Receiptlines lines={this.state.lines} addLine={this.addLine.bind(this)} removeLine={this.removeLine.bind(this)}></Receiptlines>
+        <Receiptfooter total={this.state.total} setTotal={this.setTotal.bind(this)} validateFields={this.validateFields.bind(this)}></Receiptfooter>
       </div>
     )
   }
